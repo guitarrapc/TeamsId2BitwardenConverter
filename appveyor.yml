@@ -24,4 +24,4 @@ build_script:
 test_script:
 
 deploy_script:
-  - if [ ${APPVEYOR_REPO_TAG} = "true" ]; then dotnet nuget push ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack/*.nupkg -k ${nuget_api_key} -s https://api.nuget.org/v3/index.json -ss nuget.smbsrc.net ; fi
+  - if [ ${APPVEYOR_REPO_TAG} = "true" ]; then dotnet nuget push ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack/*.nupkg -k ${nuget_api_key} -s https://api.nuget.org/v3/index.json -ss https://nuget.smbsrc.net ; fi
