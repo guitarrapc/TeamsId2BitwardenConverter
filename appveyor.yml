@@ -1,4 +1,4 @@
-image: Visual Studio 2017
+image: ubuntu18:04
 version: '1.0.{build}'
 shallow_clone: false
 skip_branch_with_pr: true
@@ -11,7 +11,7 @@ branches:
 
 environment:
   NUGET_API:
-    secure: 
+    secure: 7zpjFrJRFYqsLO6bOzzntKph8Bg1OMrMAvJnfPduGVAiMItbjpaHqCAiWy2qu/d3
 
 install:
 
@@ -19,8 +19,8 @@ build: off
 
 build_script:
   - cd src/TeamsidToBitwardenConverter
-  - docker build -t TeamsidToBitwardenConverter -f Dockerfile .
-  - docker run -it --rm -v ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack:/app/pack TeamsidToBitwardenConverter
+  - docker build -t teamsidToBitwardenConverter -f Dockerfile .
+  - docker run -it --rm -v ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack:/app/pack teamsidToBitwardenConverter
 
 test_script:
 
