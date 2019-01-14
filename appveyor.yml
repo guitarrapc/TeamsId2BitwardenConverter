@@ -21,11 +21,10 @@ build_script:
 test_script:
 
 deploy:
-  - provider: NuGet
-    api_key:
-      secure: 7zpjFrJRFYqsLO6bOzzntKph8Bg1OMrMAvJnfPduGVAiMItbjpaHqCAiWy2qu/d3
-    skip_symbols: false
-    artifact: ${APPVEYOR_BUILD_FOLDER}/src/pack/.*\.nupkg/
-    on:
-      branch: master
-      APPVEYOR_REPO_TAG: true
+- provider: NuGet
+  api_key:
+    secure: aamc4GuV9GZAOkl/VU8wbxc7XfN8Ddr/5/1VHnSkD2yhbyxvAOWhiigudSx5/mhq
+  artifact: pack/.*\.nupkg
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true
