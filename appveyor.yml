@@ -1,0 +1,35 @@
+image: Visual Studio 2017
+version: '1.0.{build}'
+shallow_clone: false
+skip_branch_with_pr: true
+services:
+- docker
+
+branches:
+  only:
+    - master
+
+environment:
+  NUGET_API:
+    secure: 
+
+install:
+
+build: off
+
+build_script:
+  - cd src/TeamsidToBitwardenConverter
+  - docker build -t TeamsidToBitwardenConverter -f Dockerfile .
+  - docker run -it --rm -v ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack:/app/pack TeamsidToBitwardenConverter
+
+test_script:
+
+deploy:
+  - provider: NuGet
+    api_key:
+      secure: 
+    skip_symbols: false
+    artifact: /.*\.nupkg/
+    on:
+      branch: master
+      APPVEYOR_REPO_TAG: true
