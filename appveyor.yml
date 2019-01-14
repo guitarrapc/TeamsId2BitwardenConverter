@@ -7,7 +7,7 @@ services:
 
 environment:
   nuget_api_key:
-    secure: aamc4GuV9GZAOkl/VU8wbxc7XfN8Ddr/5/1VHnSkD2yhbyxvAOWhiigudSx5/mhq
+    secure: jOYZDcIjrIQs9VOXOvhBVzVxmwkzBmeEebbRjv3DlemfWmzHW179DqSONfRKYE2/
 branches:
   only:
     - master
