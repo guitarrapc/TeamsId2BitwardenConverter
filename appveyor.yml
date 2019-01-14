@@ -20,11 +20,5 @@ build_script:
 
 test_script:
 
-deploy:
-- provider: NuGet
-  api_key:
-    secure: aamc4GuV9GZAOkl/VU8wbxc7XfN8Ddr/5/1VHnSkD2yhbyxvAOWhiigudSx5/mhq
-  artifact: pack/.*\.nupkg
-  on:
-    branch: master
-    APPVEYOR_REPO_TAG: true
+deploy_script:
+  - if [ ${APPVEYOR_REPO_TAG} = "true" ]; then dotnet nuget push ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack/*.nupkg -k aamc4GuV9GZAOkl/VU8wbxc7XfN8Ddr/5/1VHnSkD2yhbyxvAOWhiigudSx5/mhq ; fi
