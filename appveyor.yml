@@ -20,7 +20,7 @@ build: off
 build_script:
   - cd src/TeamsidToBitwardenConverter
   - docker build -t teamsidtobitwardenconverter -f Dockerfile .
-  - docker run -it --rm -v ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack:/app/pack teamsidtobitwardenconverter
+  - docker run -i --rm -v ${APPVEYOR_BUILD_FOLDER}/src/TeamsidToBitwardenConverter/pack:/app/pack teamsidtobitwardenconverter
 
 test_script:
 
