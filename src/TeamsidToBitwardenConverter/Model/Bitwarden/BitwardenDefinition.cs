@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace TeamsidToBitwardenConverter.Model.Bitwarden
 {
@@ -7,6 +8,14 @@ namespace TeamsidToBitwardenConverter.Model.Bitwarden
         public BitwardenCollection[] collections { get; set; }
         public BitwardenFolder[] folders { get; set; }
         public BitwardenItem[] items { get; set; }
+
+        public void WriteJson(string path)
+        {
+            var jsonBytes = Utf8Json.JsonSerializer.Serialize<BitwardenDefinition>(this);
+
+            // output json
+            File.WriteAllBytes(path, jsonBytes);
+        }
     }
 
     public class BitwardenItem
