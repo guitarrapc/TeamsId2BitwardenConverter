@@ -1,1 +1,1 @@
-docker build -t TeamsidToBitwardenConverter --build-arg NUGET_API_KEY=API_KEY .
+docker run -it --rm -v ${pwd}pack:/app/pack teamsidtobitwardenconverter
