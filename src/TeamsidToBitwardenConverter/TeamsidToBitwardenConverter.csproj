@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/guitarrapc/TeamsId2BitwardenConverter</RepositoryUrl>
     <PackageProjectUrl>https://github.com/guitarrapc/TeamsId2BitwardenConverter</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/guitarrapc/TeamsId2BitwardenConverter/blob/master/LICENSE.md</PackageLicenseUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
