@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TeamsidToBitwardenConverter\TeamsidToBitwardenConverter.csproj" />
+    <PackageReference Include="TeamsidToBitwardenConverter" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

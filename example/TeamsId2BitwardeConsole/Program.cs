@@ -29,7 +29,7 @@ namespace TeamsId2BitwardeConsole
 
         static void Personal(string outputPath, string teamsidPersonalCsv, string bitwardenFolderDefinitionJson)
         {
-            var folderDefinition = DeserializeFolderJson(bitwardenFolderDefinitionJson);
+            var folderDefinition = DeserializeFolderJson<BitwardenFolderDefinition>(bitwardenFolderDefinitionJson);
 
             // convert teamsid to bitwarden
             var teamsIdDatas = new CsvParser(teamsidPersonalCsv).Parse<TeamsIdDefinition>();
@@ -63,12 +63,12 @@ namespace TeamsId2BitwardeConsole
         }
 
         // deserialize folder definitions
-        static T DeserializeFolderJson(string path)
+        static T DeserializeFolderJson<T>(string path) where T : class
         {
             using (var stream = File.OpenRead(path))
             {
-                BitwardenFolderDefinition folders = Utf8Json.JsonSerializer.Deserialize<T>(stream);
-                return folders;
+                var deserialized = Utf8Json.JsonSerializer.Deserialize<T>(stream);
+                return deserialized;
             }
         }
     }
