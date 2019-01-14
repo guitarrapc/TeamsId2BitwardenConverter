@@ -9,10 +9,6 @@ branches:
   only:
     - master
 
-environment:
-  NUGET_API:
-    secure: 7zpjFrJRFYqsLO6bOzzntKph8Bg1OMrMAvJnfPduGVAiMItbjpaHqCAiWy2qu/d3
-
 install:
 
 build: off
@@ -27,9 +23,9 @@ test_script:
 deploy:
   - provider: NuGet
     api_key:
-      secure: 
+      secure: 7zpjFrJRFYqsLO6bOzzntKph8Bg1OMrMAvJnfPduGVAiMItbjpaHqCAiWy2qu/d3
     skip_symbols: false
-    artifact: /.*\.nupkg/
+    artifact: ${APPVEYOR_BUILD_FOLDER}/src/pack/.*\.nupkg/
     on:
       branch: master
       APPVEYOR_REPO_TAG: true
