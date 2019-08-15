@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TeamsId2BitwardeConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "true"
+    }
+  }
+}

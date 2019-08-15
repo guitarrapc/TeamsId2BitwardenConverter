@@ -15,7 +15,7 @@ namespace TeamsId2BitwardeConsole
             if (args.Length >= 1 && bool.TryParse(args[0], out var isOrganization))
             {
                 var teamsidOrganizationCsv = @"./data/teamsid_export/org_records.csv";
-                var bitwardenCollectionDefinitionJson = @"./data/bitwarden/export/bitwarden_org_export_collection_definition.json";
+                var bitwardenCollectionDefinitionJson = @"./data/bitwarden/definitions/bitwarden_org_export_collection_definition.json";
                 var bitwardenOrganizationDefinitionJson = @"./data/bitwarden/definitions/bitwarden_org_export_organization_definition.json";
                 Organization(outputPath, teamsidOrganizationCsv, bitwardenCollectionDefinitionJson, bitwardenOrganizationDefinitionJson);
             }
@@ -33,7 +33,7 @@ namespace TeamsId2BitwardeConsole
 
             // convert teamsid to bitwarden
             var teamsIdDatas = new CsvParser(teamsidPersonalCsv).Parse<TeamsIdDefinition4>();
-            var bitwardenItems = new BitwardenConverter(folderDefinition).Convert(teamsIdDatas, defaultGroup: "guitarrapc");
+            var bitwardenItems = new BitwardenConverter(folderDefinition).Convert(teamsIdDatas, defaultGroup: "TestGroup");
 
             // serialize bitwarden import data
             var importData = new BitwardenDefinition
@@ -51,7 +51,7 @@ namespace TeamsId2BitwardeConsole
 
             // convert teamsid to bitwarden
             var teamsIdDatas = new CsvParser(teamsidOrganizationCsv).Parse<TeamsIdDefinition4>();
-            var bitwardenItems = new BitwardenConverter(organizationDefinition.GetId("guitarrapc"), collectionDefinition).Convert(teamsIdDatas, defaultCollection: "guitarrapc");
+            var bitwardenItems = new BitwardenConverter(organizationDefinition.GetId("SampleOrg"), collectionDefinition).Convert(teamsIdDatas, defaultCollection: "TestCollection");
 
             // serialize bitwarden import data
             var importData = new BitwardenDefinition
