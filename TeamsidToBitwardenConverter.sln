@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsidToBitwardenConverter", "TeamsidToBitwardenConverter\TeamsidToBitwardenConverter.csproj", "{446B00A7-E359-4C7A-8C2C-24E52EEE2530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsidToBitwardenConverter", "src\TeamsidToBitwardenConverter\TeamsidToBitwardenConverter.csproj", "{446B00A7-E359-4C7A-8C2C-24E52EEE2530}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsId2BitwardeConsole", "example\TeamsId2BitwardeConsole\TeamsId2BitwardeConsole.csproj", "{5A63C751-3472-414E-96D8-6EE99DA27BC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{446B00A7-E359-4C7A-8C2C-24E52EEE2530}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446B00A7-E359-4C7A-8C2C-24E52EEE2530}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446B00A7-E359-4C7A-8C2C-24E52EEE2530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A63C751-3472-414E-96D8-6EE99DA27BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A63C751-3472-414E-96D8-6EE99DA27BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A63C751-3472-414E-96D8-6EE99DA27BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A63C751-3472-414E-96D8-6EE99DA27BC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,7 +37,7 @@ namespace TeamsidToBitwardenConverter
             public string Collection { get; set; }
         }
 
-        public BitwardenItem[] Convert(TeamsIdDefinition[] from, string defaultGroup = null, string defaultCollection = null)
+        public BitwardenItem[] Convert(ITeamsIdDefinition[] from, string defaultGroup = null, string defaultCollection = null)
         {
             var records = from.Select(record =>
             {
@@ -62,6 +62,9 @@ namespace TeamsidToBitwardenConverter
                 }
 
                 // generate typed item
+                var userEmpty = string.IsNullOrWhiteSpace(fieldRecord.UserName);
+                var emailEmpty = string.IsNullOrWhiteSpace(fieldRecord.Email);
+                var userName = !userEmpty ? fieldRecord.UserName : fieldRecord.Email;
                 var bitwarden = new BitwardenItem
                 {
                     id = Guid.NewGuid().ToString(),
@@ -71,7 +74,9 @@ namespace TeamsidToBitwardenConverter
                     name = description,
                     login = new BitwardenLogin
                     {
-                        username = fieldRecord.UserName,
+                        username = !string.IsNullOrWhiteSpace(fieldRecord.UserName) 
+                            ? fieldRecord.UserName
+                            : fieldRecord.Email,
                         password = fieldRecord.Password,
                         uris = new[] {
                         new BitwardenUri
@@ -92,10 +97,14 @@ namespace TeamsidToBitwardenConverter
                 var customSecretField = fieldRecord.SecureFields == null
                     ? Array.Empty<BitwardenField>()
                     : fieldRecord.SecureFields.Select(x => new BitwardenField { name = x.key, value = x.value, type = 1 });
-                var fields = customField.Concat(customSecretField).ToArray();
+                var fields = customField.Concat(customSecretField);
+                if (!userEmpty && !emailEmpty)
+                {
+                    fields = customField.Concat(new[] { new BitwardenField { name = "email", value = fieldRecord.Email, type = 0 } });
+                }
                 if (fields.Any())
                 {
-                    bitwarden.fields = fields;
+                    bitwarden.fields = fields.ToArray();
                 }
                 return bitwarden;
             })
@@ -103,7 +112,7 @@ namespace TeamsidToBitwardenConverter
             return records;
         }
 
-        private FieldRecord ParseFieldRecord(PropertyInfo[] props, Type t, TeamsIdDefinition source)
+        private FieldRecord ParseFieldRecord(PropertyInfo[] props, Type t, ITeamsIdDefinition source)
         {
             var fieldRecord = new FieldRecord();
             // get FieldXX properties via reflection
@@ -123,16 +132,16 @@ namespace TeamsidToBitwardenConverter
                     case var _ when Match(record.key, "url") && fieldRecord.Url == null:
                         fieldRecord.Url = record.value;
                         break;
-                    case var _ when Match(record.key, "email|e-mail") && fieldRecord.Email == null:
+                    case var _ when Match(record.key, "email|e-mail|mail") && fieldRecord.Email == null:
                         fieldRecord.Email = record.value;
                         break;
-                    case var _ when Match(record.key, "username") && fieldRecord.UserName == null:
+                    case var _ when Match(record.key, "username|id") && fieldRecord.UserName == null:
                         fieldRecord.UserName = record.value;
                         break;
-                    case var _ when Match(record.key, "password") && fieldRecord.Password == null:
+                    case var _ when Match(record.key, "password|pass") && fieldRecord.Password == null:
                         fieldRecord.Password = record.value;
                         break;
-                    case var _ when Match(record.key, "pass|access|secret|pin|token|秘密|暗号"):
+                    case var _ when Match(record.key, "access|secret|pin|token|秘密|暗号"):
                         secureMemoList.Add((record.key, record.value));
                         break;
                     case var _ when Match(record.key, "group"):
@@ -153,7 +162,7 @@ namespace TeamsidToBitwardenConverter
             return Regex.IsMatch(text, pattern, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
         }
 
-        private string GetPropertyValue(TeamsIdDefinition record, Type t, string propertyField)
+        private string GetPropertyValue(ITeamsIdDefinition record, Type t, string propertyField)
         {
             return (string)t.GetProperty(propertyField).GetValue(record);
         }

@@ -12,7 +12,11 @@ namespace TeamsidToBitwardenConverter.Model.Bitwarden
         public void WriteJson(string path)
         {
             var jsonBytes = Utf8Json.JsonSerializer.Serialize<BitwardenDefinition>(this);
-
+            var dir = Directory.GetParent(path);
+            if (!dir.Exists)
+            {
+                dir.Create();
+            }
             // output json
             File.WriteAllBytes(path, jsonBytes);
         }
