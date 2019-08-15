@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter.svg?style=svg)](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CircleCI](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter.svg?style=svg)](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 [![NuGet](https://img.shields.io/nuget/v/TeamsidToBitwardenConverter.svg?label=TeamsidToBitwardenConverter%20nuget)](https://www.nuget.org/packages/TeamsidToBitwardenConverter/)
 
