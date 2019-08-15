@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/2j410o6ofs7gwx86/branch/master?svg=true)](https://ci.appveyor.com/project/guitarrapc/teamsid2bitwardenconverter/branch/master)
+[![CircleCI](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter.svg?style=svg)](https://circleci.com/gh/guitarrapc/TeamsId2BitwardenConverter)
 
 ## TeamsId2BitwardenConverter
 
